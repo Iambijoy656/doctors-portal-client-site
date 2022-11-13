@@ -11,7 +11,7 @@ const Review = ({ review }) => {
             <div className="flex justify-between p-4">
                 <div className="flex space-x-4">
                     <div>
-                        <img src={img} alt="" className="object-cover w-12 h-12 rounded-full bg-gray-500" />
+                        <img src={img} alt="" className="object-cover w-12 h-12 rounded-full border border-2 border-primary " />
                     </div>
                     <div>
                         <h4 className="font-bold">{name}</h4>

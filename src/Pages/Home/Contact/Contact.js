@@ -17,15 +17,15 @@ const Contact = () => {
                     <p className='text-xl text-white text-center'>Stay connected with us</p>
                     <div>
                         <label for="name" className="block mb-1 ml-1 text-white">Name</label>
-                        <input id="name" type="text" placeholder="Your name" required="" className="block w-full p-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-400  input input-bordered " />
+                        <input id="name" type="text" placeholder="Your name" required="" className="block w-full p-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-400 text-black input input-bordered " />
                     </div>
                     <div>
                         <label for="email" className="block mb-1 ml-1 text-white">Email</label>
-                        <input id="email" type="email" placeholder="Your email" required="" className="block w-full p-2  rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-400  input input-bordered" />
+                        <input id="email" type="email" placeholder="Your email" required="" className="block w-full p-2  rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-400 text-black   input input-bordered" />
                     </div>
                     <div>
                         <label for="message" className="block mb-1 ml-1 text-white">Message</label>
-                        <textarea id="message" type="text" placeholder="Message..." className="block w-full p-2 rounded autoexpand focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-400  input input-bordered"></textarea>
+                        <textarea id="message" type="text" placeholder="Message..." className="block w-full p-2 rounded auto expand  text-black focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-400  input input-bordered"></textarea>
                     </div>
                     <div className='text-center'>
                         <PrimaryButton>Submit</PrimaryButton>
