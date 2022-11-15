@@ -45,7 +45,7 @@ const Login = () => {
 
                     <input className='btn btn-secondary w-full my-3' value='Login' type="submit" />
                 </form>
-                <p>New to Doctors Portal <Link to='/singup' className='text-primary my-2'>Create New Account</Link></p>
+                <p>New to Doctors Portal <Link to='/signup' className='text-primary my-2'>Create New Account</Link></p>
                 <div className="divider">OR</div>
                 <div className="flex items-center mt-6 -mx-2">
                     <button type="button" className="flex items-center justify-center w-full px-6 py-2 mx-2 text-sm font-medium text-white transition-colors duration-300 transform bg-secondary rounded-md hover:bg-blue-400 focus:bg-blue-400 focus:outline-none">

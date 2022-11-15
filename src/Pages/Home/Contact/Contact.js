@@ -12,19 +12,19 @@ const Contact = () => {
 
         >
             <section className="p-6 text-gray-100 my-16">
-                <form novalidate="" className="container w-full max-w-xl p-8 mx-auto space-y-6 rounded-md shadow ng-untouched ng-pristine ng-valid">
+                <form noValidate="" className="container w-full max-w-xl p-8 mx-auto space-y-6 rounded-md shadow ng-untouched ng-pristine ng-valid">
                     <h2 className="w-full text-3xl font-bold leading-tight text-white text-center">Contact us</h2>
                     <p className='text-xl text-white text-center'>Stay connected with us</p>
                     <div>
-                        <label for="name" className="block mb-1 ml-1 text-white">Name</label>
+                        <label htmlFor="name" className="block mb-1 ml-1 text-white">Name</label>
                         <input id="name" type="text" placeholder="Your name" required="" className="block w-full p-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-400 text-black input input-bordered " />
                     </div>
                     <div>
-                        <label for="email" className="block mb-1 ml-1 text-white">Email</label>
+                        <label htmlFor="email" className="block mb-1 ml-1 text-white">Email</label>
                         <input id="email" type="email" placeholder="Your email" required="" className="block w-full p-2  rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-400 text-black   input input-bordered" />
                     </div>
                     <div>
-                        <label for="message" className="block mb-1 ml-1 text-white">Message</label>
+                        <label htmlFor="message" className="block mb-1 ml-1 text-white">Message</label>
                         <textarea id="message" type="text" placeholder="Message..." className="block w-full p-2 rounded auto expand  text-black focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-400  input input-bordered"></textarea>
                     </div>
                     <div className='text-center'>

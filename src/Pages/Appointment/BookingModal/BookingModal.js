@@ -44,7 +44,7 @@ const BookingModal = ({ treatment, setTreatment, selectedDate }) => {
                     <div className="flex items-center justify-center text-center bg-white  text-gray-900">
                         <form
                             onSubmit={handleBooking}
-                            novalidate="" action="" className="flex flex-col w-full max-w-lg p-12 rounded  text-gray-100 ng-untouched ng-pristine ng-valid">
+                            noValidate="" action="" className="flex flex-col w-full max-w-lg p-12 rounded  text-gray-100 ng-untouched ng-pristine ng-valid">
 
                             <label htmlFor="date" className="self-start mt-3 text-xs text-black font-semibold">Date</label>
                             <input id="date" value={date} type="text" className="flex items-center h-12 px-4 mt-2 rounded focus:outline-none focus:ring-2 text-gray-900 focus:border-secondary focus:ring-secondary-400  input input-bordered" readOnly />
