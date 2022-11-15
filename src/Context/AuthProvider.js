@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail } from 'firebase/auth';
 import app from '../firebase/firebase.config';
 import { current } from 'daisyui/src/colors';
 
@@ -37,6 +37,10 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, googleProvider);
     };
 
+    const forgotPassword = (email) => {
+        setLoading(true)
+        return sendPasswordResetEmail(auth, email);
+    };
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
@@ -61,7 +65,8 @@ const AuthProvider = ({ children }) => {
         user,
         updateUser,
         loading,
-        signInWithGoogle
+        signInWithGoogle,
+        forgotPassword
 
 
 

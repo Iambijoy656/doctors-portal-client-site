@@ -9,7 +9,7 @@ const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm()
 
 
-    const { signIn, signInWithGoogle } = useContext(AuthContext)
+    const { signIn, signInWithGoogle, forgotPassword } = useContext(AuthContext)
 
     const [loginError, setLoginError] = useState('')
 
@@ -51,6 +51,32 @@ const Login = () => {
     };
 
 
+    const handleModal = async () => {
+        const { value: email } = await Swal.fire({
+            title: "Input email address",
+            input: "email",
+            inputLabel: "Your email address",
+            inputPlaceholder: "Enter your email address",
+        });
+
+        forgotPassword(email)
+            .then(() => {
+                Swal.fire(
+                    "Password Reset successfully!",
+                    "Please check your email.",
+                    "success"
+                );
+            })
+            .catch(() => {
+                Swal.fire(`Failed Reset password`);
+            });
+    };
+
+
+
+
+
+
     return (
         <div className='h-[800px]  flex justify-center items-center'>
             <div className='w-96 p-8 shadow-2xl'>
@@ -78,7 +104,7 @@ const Login = () => {
 
                                 })}
                             className="input input-bordered w-full max-w-xs" />
-                        <label className="label"> <span className="label-text">forgot password?</span></label>
+                        <label onClick={handleModal} className="label"> <span className="label-text">forgot password?</span></label>
 
                         {errors.password && <p className='text-error'>{errors.password?.message}</p>}
                     </div>
