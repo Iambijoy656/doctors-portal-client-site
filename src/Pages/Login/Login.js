@@ -1,14 +1,54 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
+import Swal from "sweetalert2";
 
 
 const Login = () => {
-
     const { register, formState: { errors }, handleSubmit } = useForm()
+
+
+    const { signIn, signInWithGoogle } = useContext(AuthContext)
+
+    const [loginError, setLoginError] = useState('')
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.from?.pathname || "/";
+
+
+
     const handleLogin = data => {
-        console.log(data);
+
+        signIn(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                setLoginError('')
+                console.log(user)
+                navigate(from, { replace: true })
+
+            })
+            .catch((error) => {
+                const errorMessage = error.message.slice(22, error.message.length - 2);
+                setLoginError(errorMessage)
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: errorMessage,
+                });
+            });
     }
+
+
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+            .then((result) => {
+                const user = result.user;
+                navigate(from, { replace: true });
+            })
+            .catch((error) => console.error(error));
+    };
 
 
     return (
@@ -48,7 +88,7 @@ const Login = () => {
                 <p>New to Doctors Portal <Link to='/signup' className='text-primary my-2'>Create New Account</Link></p>
                 <div className="divider">OR</div>
                 <div className="flex items-center mt-6 -mx-2">
-                    <button type="button" className="flex items-center justify-center w-full px-6 py-2 mx-2 text-sm font-medium text-white transition-colors duration-300 transform bg-secondary rounded-md hover:bg-blue-400 focus:bg-blue-400 focus:outline-none">
+                    <button onClick={handleGoogleSignIn} type="button" className="flex items-center justify-center w-full px-6 py-2 mx-2 text-sm font-medium text-white transition-colors duration-300 transform bg-secondary rounded-md hover:bg-blue-400 focus:bg-blue-400 focus:outline-none">
                         <svg className="w-4 h-4 mx-2 fill-current" viewBox="0 0 24 24">
                             <path d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z">
                             </path>

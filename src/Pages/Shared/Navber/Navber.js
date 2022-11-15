@@ -1,14 +1,35 @@
-import React from 'react';
+import { error } from 'daisyui/src/colors/colorNames';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthProvider';
 
 const Navber = () => {
+    const { user, logOut } = useContext(AuthContext)
+
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+
+            })
+            .catch(error => {
+                console.error(error);
+            })
+    }
 
     const menuItems = <React.Fragment>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/appointment'>Appointment</NavLink></li>
         <li><NavLink to='/about'>About</NavLink></li>
-        <li><NavLink to='/reviews'>Reviews</NavLink></li>
-        <li><NavLink to='/login'>Login</NavLink></li>
+
+        {user?.uid ?
+            <>
+                <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
+                <li><button onClick={handleLogOut}> Log Out</button></li>
+            </>
+            :
+            <li><NavLink to='/login'>Login</NavLink></li>
+        }
 
     </React.Fragment>
 
