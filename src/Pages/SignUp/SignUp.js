@@ -12,11 +12,14 @@ const SignUp = () => {
     const location = useLocation();
     const from = location?.state?.from?.pathname || "/";
 
-
     const { createUser, updateUser, signInWithGoogle } = useContext(AuthContext)
 
+
+
+
+
     const handleSignUp = (data) => {
-        console.log(data)
+
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user
@@ -29,7 +32,9 @@ const SignUp = () => {
                 }
 
                 updateUser(userInfo)
-                    .then(() => { })
+                    .then(() => {
+                        navigate('/')
+                    })
                     .catch((error) => {
                         console.log(error);
                     });

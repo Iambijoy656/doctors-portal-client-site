@@ -1,3 +1,5 @@
+import { async } from '@firebase/util';
+import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import BookingModal from '../BookingModal/BookingModal';
@@ -5,16 +7,26 @@ import AppointmentOption from './AppointmentOption';
 
 const AvailableAppointments = ({ selectedDate }) => {
 
-    const [appointmentOptions, setAppointmentOptions] = useState([])
+    // const [appointmentOptions, setAppointmentOptions] = useState([])
 
     const [treatment, setTreatment] = useState(null)
 
+    const date = format(selectedDate, 'PP')
 
-    useEffect(() => {
-        fetch('appointOptions.json')
-            .then(res => res.json())
-            .then(data => setAppointmentOptions(data))
-    }, [])
+    const { data: appointmentOptions = [] } = useQuery({
+        queryKey: ['appointmentOptions', date],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/appointmentOptions?date=${date}`)
+            const data = await res.json();
+            return data;
+        }
+    })
+
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/appointmentOptions')
+    //         .then(res => res.json())
+    //         .then(data => setAppointmentOptions(data))
+    // }, [])
 
 
     return (
