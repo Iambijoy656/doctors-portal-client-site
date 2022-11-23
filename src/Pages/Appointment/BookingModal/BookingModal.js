@@ -7,19 +7,18 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
     const { user } = useContext(AuthContext)
 
 
+    const { name: treatmentName, slots, price } = treatment;
+    const date = format(selectedDate, 'PP');
 
-    const { name: treatmentName, slots } = treatment; //treatment is appointment option just different name
-    const date = format(selectedDate, 'PP')
 
-
-    const handleBooking = (event) => {
-        event.preventDefault()
+    const handleBooking = event => {
+        event.preventDefault();
         const form = event.target;
         const slot = form.slot.value;
         const name = form.name.value;
         const email = form.email.value;
         const phone = form.phone.value;
-
+        // [3, 4, 5].map((value, i) => console.log(value))
         const booking = {
             appointmentDate: date,
             treatment: treatmentName,
@@ -27,11 +26,11 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
             slot,
             email,
             phone,
-
+            price
         }
 
-        //Todo : send data to the server
-        //and once data is saved then closed the modal 
+        // TODO: send data to the server
+        // and once data is saved then close the modal 
         // and display success toast
         fetch('http://localhost:5000/bookings', {
             method: 'POST',
@@ -42,22 +41,20 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                console.log(data);
                 if (data.acknowledged) {
-                    setTreatment(null)
-                    toast.success('Booking confirmed')
+                    setTreatment(null);
+                    toast.success('Booking confirmed');
                     refetch();
                 }
                 else {
-
-                    toast.error(data.message)
+                    toast.error(data.message);
                 }
             })
 
 
-
-
     }
+
 
     return (
         <>
