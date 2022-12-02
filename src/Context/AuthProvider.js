@@ -1,7 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile, signInWithPopup, GoogleAuthProvider, sendPasswordResetEmail } from 'firebase/auth';
 import app from '../firebase/firebase.config';
-import { current } from 'daisyui/src/colors';
 
 export const AuthContext = createContext()
 const auth = getAuth(app)
